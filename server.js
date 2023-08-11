@@ -8,7 +8,8 @@ import authRoutes from './routes/authRoutes.js'
 dotenv.config()
 
 const app = express()
-//database
+
+// Database Configuration
 connectDB();
 app.get('/', (req,res) => {
     res.send('<h1>Welcome to the ecommerce app !</h1>')
@@ -17,11 +18,12 @@ app.get('/', (req,res) => {
 app.use(express.json())
 app.use(morgan('dev'))
 
+// PORT Configuration
 const PORT = process.env.PORT || 8080;
-
-//routes
-app.use("/api/v1/auth", authRoutes);
-
 app.listen(PORT, () => {
     console.log(`Server is Running on ${process.env.DEV_MODE}  mode on port ${PORT}`.bgCyan.white);
 });
+
+// ROUTES
+app.use("/api/v1/auth", authRoutes);
+
